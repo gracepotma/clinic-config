@@ -1,0 +1,128 @@
+{
+    "id": "bahmni.registration",
+    "instanceOf":"bahmni.template.registration",
+    "description": "Bahmni Patient Registration App",
+    "extensionPoints": [
+        {
+            "id": "org.bahmni.registration.patient.search.result.action",
+            "description": "Bahmni Patient Search Result Action"
+        },
+        {
+            "id": "org.bahmni.registration.patient.next",
+            "description": "After Bahmni Patient Registration, forward url configuration"
+        },
+        {
+            "id": "org.bahmni.registration.navigation",
+            "description": "Navigation within regsitration first and second page"
+        },
+        {
+            "id": "org.bahmni.registration.conceptSetGroup.observations",
+            "description": "Registration Second Page Forms"
+        },
+        {
+            "id": "org.bahmni.registration.identifier.ndhm.source",
+            "description": "NDHM HealthID Verification"
+        }
+    ],
+    "contextModel": [
+        "patientUuid",
+        "activeVisitUuid"
+    ],
+    "config" : {
+        "mandatoryPersonAttributes" : ["primaryContact"],
+        "patientInformation": {
+            "additionalPatientInformation": {
+                "title": "Additional Patient Information",
+                "attributes": [
+                    "distanceFromCenter",
+                    "isUrban",
+                    "cluster",
+                    "RationCard",
+                    "familyIncome",
+                    "debt",
+                    "cluster",
+                    "email"
+                ]
+            },
+            "defaults":  {
+                "class": "General",
+                "landHolding": 2
+            }
+        },
+        "addressHierarchy": {
+            "showAddressFieldsTopDown": false,
+            "strictAutocompleteFromLevel": "stateProvince"
+        },
+        "relationshipTypeMap": {
+            "Doctor":"provider",
+            "Parent":"patient"
+        },
+        "readOnlyExtraIdentifiers": ["Health ID","PHR Address"],
+        "autoCompleteFields":["familyName", "caste"],
+        "defaultIdentifierPrefix": "ABC",
+        "defaultVisitType": "OPD",
+        "searchByIdForwardUrl": "/patient/{{patientUuid}}",
+        "showMiddleName": true,
+        "showLastName": true,
+        "isLastNameMandatory": true,
+        "patientNameDisplayOrder": ["firstName", "middleName", "lastName"],
+        "showSaveConfirmDialog": false,
+        "showBirthTime": true,
+        "showCasteSameAsLastNameCheckbox": false,
+        "printOptions": [
+            {
+                "translationKey": "REGISTRATION_PRINT_REG_CARD_LOCAL_KEY",
+                "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print_local.html",
+                "shortcutKey": "l"
+            },
+            {
+                "translationKey": "REGISTRATION_PRINT_REG_CARD_KEY",
+                "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/print.html",
+                "shortcutKey": "p"
+            },
+            {
+                "translationKey": "REGISTRATION_PRINT_SUPPLEMENTAL_PAPER",
+                "templateUrl": "/bahmni_config/openmrs/apps/registration/supplementalPaperLayout/print.html",
+                "shortcutKey": "r"
+            },
+            {
+                "translationKey": "REGISTRATION_PRINT_WITH_BARCODE",
+                "templateUrl": "/bahmni_config/openmrs/apps/registration/registrationCardLayout/printWithBarcode.html",
+                "shortcutKey": "c"
+            }
+        ],
+        "conceptSetUI": {
+            "REGISTRATION FEES": {
+                "required": true,
+                "label": "Fee"
+            },
+            "FHS": {
+                "buttonSelect": true
+            },
+            "defaults":{
+                "FHS": "Present"
+            }
+        },
+        "fieldValidation" : {
+            "email" : {"pattern" : "^(?=.{1,40}$)(([^<>()\\[\\]\\\\.,;:\\s@\"]+(\\.[^<>()\\[\\]\\\\.,;:\\s@\"]+)*)|(\".+\"))@(([a-zA-Z\\-0-9]+\\.)+[a-zA-Z]{2,4})$", "errorMessage" : "Should be a valid email address"},
+            "primaryContact" : {"pattern" : "^([+]91[-]?|91|)?([1-9]{1}[0-9]{9})$", "errorMessage" : "Contact should be this in format: +91-xxxxxxxxxx | 91xxxxxxxxxx | xxxxxxxxxx | +91xxxxxxxxxx"},
+            "secondaryContact" : {"pattern" : "^([+]91[-]?|91|)?([1-9]{1}[0-9]{9})$", "errorMessage" : "Contact should be this in format: +91-xxxxxxxxxx | 91xxxxxxxxxx | xxxxxxxxxx | +91xxxxxxxxxx"},
+            "landHolding" : {"pattern" : "[0-9]{0,3}", "errorMessage" : "Should be between 1 to 999 acres"},
+            "givenNameLocal" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "middleNameLocal" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "familyNameLocal" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "familyName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "givenName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "middleName" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "address1" : {"pattern" : "[ a-zA-Z0-9,\\s]{2,}", "errorMessage" : "Should contain at least 2 characters"},
+            "address2" : {"pattern" : "[ a-zA-Z,]{0,}", "errorMessage" : "Should contain characters"},
+            "address3" : {"pattern" : "[ a-zA-Z,]{0,}", "errorMessage" : "Should contain characters"},
+            "cityVillage" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "countyDistrict" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "primaryRelative" : {"pattern" : "[ a-zA-Z]{0,}", "errorMessage" : "Should contain characters"},
+            "secondaryIdentifier" : {"pattern" : "[ a-zA-Z0-9\\s]{0,}", "errorMessage" : "Should contain characters"},
+            "debt" : {"pattern" : "[0-9]{0,10}", "errorMessage" : "Should be a number"}
+        }
+       
+    }
+}
