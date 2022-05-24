@@ -1,0 +1,3 @@
+Uuid,Void/Retire,Name,Description,Format,Foreign uuid,Searchable,Edit privilege,_order:1000
+99372c47-d86a-44dc-97bc-5063deb15566,,phoneNumber,Phone Number,java.lang.String,,TRUE,,
+513556b5-62ea-43f4-9f65-904b736c201c,,alternatePhoneNumber,Alternate Phone Number,java.lang.String,,TRUE,,

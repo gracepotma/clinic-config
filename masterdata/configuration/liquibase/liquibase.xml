@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+   <databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog/1.9"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog/1.9
+                  http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-1.9.xsd">
+ 
+    <changeSet id="bah-1570-20220427-1" author="Clinic-config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="0">
+                select count(*) from users where username='registration';
+            </sqlCheck>
+        </preConditions>
+        <comment>Adding bahmni-user</comment>
+        <sql>
+            SET @puuid = uuid();
+            INSERT INTO person(gender, birthdate_estimated, dead, creator, date_created, uuid) VALUES('M', 0, 0, 1, now(), @puuid);
+            SELECT person_id INTO @person_id from person where uuid = @puuid;
+            INSERT INTO person_name(person_id, preferred, given_name, family_name, creator, date_created, uuid) VALUES(@person_id, 1, 'registration', 'bahmni-user', 1, now(), @puuid);
+            INSERT INTO users(system_id, creator, date_created, person_id, uuid, username, password, salt) VALUES ('registration', 1, now(),@person_id, uuid(), 'registration', 'e28e3ae84c66bfba6b2c50a406567f3e34fea1d76b17c006931571fe5d940f6c6b81e49cf8ea5e0adfca19fe3beb68d8ad79f7c3812e92b8d502a9afcf2029b2', '1c9d7e94aeeb7a2459ef45ed200b2944582e0e7088d75f9b57a3644861ea766c20a269b3fe2eadaff1bc445ecfbd9bd3c0c550dfd813de48d39423cd3d1a8b10');
+            INSERT INTO provider (person_id, identifier, creator, date_created, uuid, name) VALUES (@person_id, 'registration', 1, now(), uuid(), 'registration');
+        </sql>
+    </changeSet>
+    <changeSet id="bah-1571-20220524-2" author="Clinic-config">
+        <preConditions onFail="MARK_RAN">
+            <sqlCheck expectedResult="1">
+                select count(*) from users where system_id = 'registration'
+            </sqlCheck>
+        </preConditions>
+        <comment>Map registration users to FrontDesk role</comment>
+        <sql>
+            set @id = NULL;
+            select user_id from users where system_id='registration' into @id;
+            INSERT IGNORE INTO `user_role` VALUES (@id,'FrontDesk');
+        </sql>
+    </changeSet>
+    <changeSet id="202205160218-globalProperty" author="Clinic-config"> 
+        <sql>
+            <!--Add undisclosed option for the Gender dropdown-->
+            UPDATE global_property SET property_value = '{"M":"Male", "F":"Female","O":"Other","U":"Undisclosed"}' WHERE property LIKE 'mrs.genders'; 
+            <!--Retrieve the patient photo from the correct path after saving or updation of patient-->
+            INSERT into global_property(property,property_value,uuid) VALUES("emr.personImagesDirectory","/home/bahmni/patient_images",uuid());                  
+        </sql>  
+    </changeSet>
+    <changeSet id="202205160349-relationshipType" author="Clinic-config" runAlways="true"> 
+        <sql>
+            <!--Inorder to test the below query for relationship_type table we need to remove relationship_type from openmrs manually for now.-->
+            UPDATE relationship_type SET retired=1 WHERE relationship_type_id=1; 
+            UPDATE person_attribute_type SET retired=1 WHERE name='givenNameLocal';
+        </sql>  
+    </changeSet>
+    <changeSet id="202205160210-identifier" author="Clinic-config"> 
+        <sql>
+            <!--Add Identifier type ABC to patient_identifier_type and update global property-->
+            INSERT into idgen_identifier_source (uuid, name, description, identifier_type, date_created, creator) 
+            VALUES (uuid(), 'ABC', 'ID sequence source for patients in ABC', (select patient_identifier_type_id 
+            from patient_identifier_type where name = 'Bahmni Id'), now(), 1);
+            
+            INSERT into idgen_seq_id_gen (id, next_sequence_value, base_character_set, first_identifier_base, prefix, 
+            suffix, min_length, max_length) VALUES ((select id from idgen_identifier_source where name = 'ABC'), 
+            200001, 0123456789, 200000, 'ABC', '', 4, 9);
+        </sql>                     
+    </changeSet>   
+    
+</databaseChangeLog>

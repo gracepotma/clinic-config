@@ -1,0 +1,8 @@
+<config>
+  <globalProperties>
+    <globalProperty>
+      <property>emr.personImagesDirectory</property>
+      <value>/home/bahmni/patient_images</value>
+    </globalProperty>
+  </globalProperties>
+</config>
