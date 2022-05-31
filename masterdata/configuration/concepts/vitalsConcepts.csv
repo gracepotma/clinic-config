@@ -1,0 +1,16 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Fully specified name:fr,Short name:fr,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:900
+
+c36bc411-3f10-11e4-adec-0800271c1b75,,,Pulse,Pulse,,,,,Misc,Numeric,,,,yes,/min,72.0,72.0,,,,
+c3838414-3f10-11e4-adec-0800271c1b75,,,SPO2,SPO2,,,,,Misc,Numeric,,,,yes,%,97.0,,,,,
+c37e0f37-3f10-11e4-adec-0800271c1b75,,,RR,RR,,,,,Misc,Numeric,,,,yes,/min,16.0,20.0,,,,
+c37bd733-3f10-11e4-adec-0800271c1b75,,,Temperature,Temperature,,,,,Misc,Numeric,,,,yes,F,98.6,98.6,,,,
+c379aa1d-3f10-11e4-adec-0800271c1b75,,,Diastolic,Diastolic,,,,,Misc,Numeric,,,,yes,mm Hg,70.0,85.0,,,,
+c36e9c8b-3f10-11e4-adec-0800271c1b75,,,Systolic,Systolic,,,,,Misc,Numeric,,,,yes,mm Hg,110.0,140.0,,,,
+
+c44cfed2-3f10-11e4-adec-0800271c1b75,,,Sitting,Sitting,,,,,Misc,N/A,,,,,,,,,,,
+c44d6b8e-3f10-11e4-adec-0800271c1b75,,,Supine,Supine,,,,,Misc,N/A,,,,,,,,,,,
+c44c3c37-3f10-11e4-adec-0800271c1b75,,,Posture,Posture,,,,,Misc,Coded,,Sitting New Data;Supine New Data,,,,,,,,,
+
+c36d22e6-3f10-11e4-adec-0800271c1b75,,,Blood Pressure,Blood Pressure,,,,,ConvSet,N/A,,,Diastolic New Data;Systolic New Data;Posture New Data,,,,,,,,
+
+c36a7537-3f10-11e4-adec-0800271c1b75,,,Vitals,Vitals,,,,,Misc,NA,,,Pulse;SPO2;RR;Temperature;Blood Pressure,,,,,,,,
