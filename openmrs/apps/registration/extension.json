@@ -89,5 +89,17 @@
         },
         "order": 2,
         "requiredPrivilege": "Edit Visits"
+    },
+    "registrationSecondPage":{
+        "id": "bahmni.registration.conceptSetGroup.registrationSecondPage",
+        "extensionPointId": "org.bahmni.registration.conceptSetGroup.observations",
+        "type": "forms",
+        "extensionParams": {
+            "formName": "registration_second_page",
+            "conceptNames": ["Registration Fee", "Doctor Name", "Consultation Fee"],
+            "showLatest": true
+        },
+        "order": 3,
+        "requiredPrivilege": "Edit Visits"
     }
 }

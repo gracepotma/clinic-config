@@ -1,0 +1,8 @@
+Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Description:en,Fully specified name:fr,Short name:fr,Description:fr,Data class,Data type,Complex data handler,Answers,Members,Allow decimals,Units,Normal low,Normal high,Absolute low,Absolute high,_version:1,_order:900
+06188def-b659-4feb-8899-d513f49b67fb,,,Nutritional Values,Nutritional Values,,,,,ConvSet,N/A,,,Height (cm);Weight (kg),,,,,,,,
+906c8240-85e5-4a3b-a047-08af8518c172,,,BP,BP,,,,,ConvSet,N/A,,,Systolic blood pressure;Diastolic blood pressure,,mmHg,,,,,,
+8f40dace-cb3d-4334-932b-6c3dc054aef8,,,Vitals,Vitals,,,,,ConvSet,N/A,,,BP;Body position;Pulse;Arterial blood oxygen saturation (pulse oximeter),,,,,,,,
+58aaa919-cbd1-4847-95e9-177c678de245,,,Registration Fee,Registration Fee,,,,,Misc,Numeric,,,,TRUE,INR,,,,,,
+eb0f569c-1267-4306-881f-5e87ae37c5f3,,,Doctor Name,Doctor Name,,,,,Misc,Text,,,,,,,,,,,
+72268079-8875-4a5f-8a0e-c4261560b1d5,,,Consultation Fee,Consultation Fee,,,,,Misc,Numeric,,,,TRUE,INR,,,,,,
+f3de9f54-4a63-4b1e-9587-fa86ee558b34,,,Fee Information,Fee Information,,,,,ConvSet,N/A,,,Registration Fee;Doctor Name;Consultation Fee,,,,,,,,
