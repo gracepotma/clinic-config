@@ -35,3 +35,8 @@ Uuid,Void/Retire,Same as mappings,Fully specified name:en,Short name:en,Descript
 ,,,HCTZ,,,,,,Misc,N/A,,,,,,,,,,,
 ,,,Calcium CH Blocker,,,,,,Misc,N/A,,,,,,,,,,,
 ,,,Current Home Medications,Current Home Medications,,,,,Misc,Coded,,HCTZ;Angiotensin-converting enzyme inhibitors drug class;Beta blockers;Calcium CH Blocker;Nitroglycerin;Digoxin,,,,,,,,,
+,,,"Orthopaedic, Inspection",Inspection,,,,,Misc,Text,,,,,,,,,,,
+,,,"Orthopaedic, Palpation",Palpation,,,,,Misc,Text,,,,,,,,,,,
+,,,"Orthopaedic, Special Tests","Special Tests",,,,,Misc,Text,,,,,,,,,,,
+,,,"Orthopaedic, Range of Motion","Range of Motion",,,,,Misc,Text,,,,,,,,,,,
+,,,"Orthopaedic, Radiographic Examination",Radiographic Examination,,,,,Misc,Text,,,,,,,,,,,
